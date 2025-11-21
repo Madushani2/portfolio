@@ -1,124 +1,211 @@
-/* ---------- Global Styles ---------- */
+/* ========== Base ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
-  margin: 0;
-  padding: 0;
-  transition: background-color 0.4s, color 0.4s;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
-header, footer {
-  background-color: #222;
-  color: white;
-  text-align: center;
-  padding: 1rem;
+/* ========== Theme Variables ========== */
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --border: #e5e5e5;
+  --nav-bg: #ffffff;
+  --button-bg: #020214;
+  --button-text: #ffffff;
+  --hover-bg: #111132;
 }
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+body.dark {
+  --bg: #0f0f13;
+  --text: #f5f5f5;
+  --border: #2c2c35;
+  --nav-bg: #14141a;
+  --button-bg: #f5f5f5;
+  --button-text: #0f0f13;
+  --hover-bg: #d5d5d5;
+}
+
+/* ========== Navbar ========== */
+.navbar {
+  width: 100%;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-}
-
-#theme-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-/* ---------- Sections ---------- */
-section {
-  background: white;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-#about {
-  display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
+  padding: 1rem 4rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--nav-bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-#about img {
-  width: 150px;
-  border-radius: 50%;
-  margin-bottom: 1rem;
+.logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
 }
 
-/* ---------- Projects ---------- */
-#project-container {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
-}
-
-.project-card {
-  background: #e7e7e7;
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.project-card h3 {
-  margin-top: 0;
-}
-
-/* ---------- Contact Form ---------- */
-form {
+/* ========== Nav Links ========== */
+.nav-links {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  gap: 2rem;
 }
 
-input, textarea, button {
-  font-family: inherit;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-button {
-  background-color: #222;
-  color: white;
-  cursor: pointer;
+.nav-links a:hover {
+  color: var(--hover-bg);
 }
 
-button:hover {
-  background-color: #555;
+/* ========== Resume Button & Actions ========== */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-/* ---------- Dark Mode ---------- */
+.resume-btn {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background 0.2s ease;
+}
+
+.resume-btn:hover {
+  background-color: var(--hover-bg);
+}
+
+/* ========== Theme Toggle ========== */
 .dark-mode {
-  background-color: #222;
-  color: #f0f0f0;
+  background-color: black;
+  color: white;
 }
 
-.dark-mode section {
-  background-color: #333;
+.label {
+  height: 60px;
+  width: 120px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  -webkit-box-shadow: inset 0 0 5px 4px rgba(255, 255, 255, 1),
+    inset 0 0 20px 1px rgba(0, 0, 0, 0.488), 10px 20px 30px rgba(0, 0, 0, 0.096),
+    inset 0 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 5px 4px rgba(255, 255, 255, 1),
+    inset 0 0 20px 1px rgba(0, 0, 0, 0.488), 10px 20px 30px rgba(0, 0, 0, 0.096),
+    inset 0 0 0 3px rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
 }
 
-/* ---------- Responsive (Flexbox + Media Query) ---------- */
-@media (min-width: 768px) {
-  #about {
-    flex-direction: row;
-    text-align: left;
-    justify-content: center;
-    gap: 2rem;
+.label:hover {
+  -webkit-transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+  transform: perspective(100px) rotateX(5deg) rotateY(-5deg);
+}
+
+#checkbox:checked ~ .label:hover {
+  -webkit-transform: perspective(100px) rotateX(-5deg) rotateY(5deg);
+  transform: perspective(100px) rotateX(-5deg) rotateY(5deg);
+}
+
+#checkbox {
+  display: none;
+}
+
+#checkbox:checked ~ .label::before {
+  left: 70px;
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #414141 70%);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.label::before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #000000;
+  background-image: linear-gradient(
+    130deg,
+    #757272 10%,
+    #ffffff 11%,
+    #726f6f 62%
+  );
+  left: 10px;
+  -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3),
+    10px 10px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3), 10px 10px 10px rgba(0, 0, 0, 0.3);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+
+/* ========== Mobile Menu ========== */
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 900px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: var(--nav-bg);
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    border-top: 1px solid var(--border);
+    padding: 1rem 0;
+    display: none;
   }
 
-  #project-container {
-    grid-template-columns: repeat(2, 1fr);
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Keep theme toggle visible */
+  .resume-btn {
+    display: none;
+  }
+
+  .navbar {
+    padding: 1rem 2rem;
   }
 }
